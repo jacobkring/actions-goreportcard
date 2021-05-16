@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'Action Go Report Card'
+description: 'Generate Go Report Card'
 inputs:
   threshold:
     description: "threshold for failure (-t)"
