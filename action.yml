@@ -1,0 +1,36 @@
+name: 'Hello World'
+description: 'Greet someone'
+inputs:
+  threshold:
+    description: "threshold for failure (-t)"
+    required: false
+    default: "-t 0"
+  verbose:
+    description: "verbose mode (-v)"
+    required: false
+    default: ""
+outputs:
+  summary:
+    description: "Go Report Card Output"
+    value: ${{ steps.goreportcard.outputs.summary }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Go Report Card
+      id: goreportcard
+      run: |
+        go get -u github.com/client9/misspell/cmd/misspell
+        git clone https://github.com/gojp/goreportcard.git
+        cd goreportcard
+        make install
+        go install ./cmd/goreportcard-cli
+        cd .. && rm -rf goreportcard
+        cd /github/workspaces
+        output=`goreportcard-cli -t 85.0`
+        output="${output//'%'/'%25'}"
+        output="${output//$'\n'/'%0A'}"
+        output="${output//$'\r'/'%0D'}"
+        echo "::set-output name=reportCard::${output}"
+      shell: bash
+
