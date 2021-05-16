@@ -26,6 +26,7 @@ runs:
         make install
         go install ./cmd/goreportcard-cli
         cd .. && rm -rf goreportcard
+        goreportcard-cli ${{ inputs.verbose }} ${{ inputs.threshold }}
         output=`goreportcard-cli ${{ inputs.verbose }} ${{ inputs.threshold }}`
         output="${output//'%'/'%25'}"
         output="${output//$'\n'/'%0A'}"
