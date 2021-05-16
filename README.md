@@ -7,7 +7,6 @@ A composite github action template for running goreportcard-cli and grabbing the
 I contribute to a number of private Golang repos that make it inconvenient to use 3rd party tools for things like goreportcard.com.
 
 ## Usage
-```
 
 #### Workflow
 
