@@ -23,6 +23,7 @@ runs:
         go get -u github.com/client9/misspell/cmd/misspell
         git clone https://github.com/gojp/goreportcard.git
         cd goreportcard
+        git checkout a5e10ccf946a5e2bd7108c39040b4d1102d1f3b8
         make install
         go install ./cmd/goreportcard-cli
         cd .. && rm -rf goreportcard
